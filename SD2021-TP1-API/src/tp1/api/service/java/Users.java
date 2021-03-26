@@ -2,7 +2,6 @@ package tp1.api.service.java;
 
 import java.util.List;
 
-import tp1.api.Result;
 import tp1.api.User;
 
 public interface Users {

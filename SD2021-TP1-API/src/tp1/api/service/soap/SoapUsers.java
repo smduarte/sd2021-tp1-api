@@ -4,8 +4,8 @@ import java.util.List;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
-import tp1.api.Result;
 import tp1.api.User;
+import tp1.api.service.java.Result;
 
 @WebService(serviceName=SoapUsers.NAME, targetNamespace=SoapUsers.NAMESPACE, endpointInterface=SoapUsers.INTERFACE)
 public interface SoapUsers {

@@ -1,4 +1,4 @@
-package tp1.api;
+package tp1.api.service.java;
 
 /**
  * 
@@ -72,7 +72,7 @@ public interface Result<T> {
 /*
  * 
  */
-class OkResult<T> implements tp1.api.Result<T> {
+class OkResult<T> implements tp1.api.service.java.Result<T> {
 
 	final T result;
 	
@@ -100,7 +100,7 @@ class OkResult<T> implements tp1.api.Result<T> {
 	}
 }
 
-class ErrorResult<T> implements tp1.api.Result<T> {
+class ErrorResult<T> implements tp1.api.service.java.Result<T> {
 
 	final ErrorCode error;
 	

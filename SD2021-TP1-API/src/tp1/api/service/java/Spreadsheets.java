@@ -3,7 +3,6 @@ package tp1.api.service.java;
 import java.util.List;
 
 import jakarta.ws.rs.QueryParam;
-import tp1.api.Result;
 import tp1.api.Spreadsheet;
 
 
