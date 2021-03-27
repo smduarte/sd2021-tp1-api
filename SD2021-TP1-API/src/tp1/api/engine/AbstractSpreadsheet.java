@@ -13,12 +13,31 @@ import java.util.List;
  */
 public interface AbstractSpreadsheet {
 	
+	/**
+	 * The number of rows of the spreadsheet
+	 */
 	int rows();
+	
+	/**
+	 * The number of coluns of the spreadsheet
+	 */
 	int columns();
 	
+	/**
+	 * The id of the spreadsheet
+	 */
 	String sheetId();
 	
+	/**
+	 * Called by the engine to obtain the raw value of a cell, given its row, col coordinates
+	 */
 	String cellRawValue(int row, int col);
 	
+	/**
+	 * Called by the engine to resolve importrange formulas
+	 * @param sheetId - the sheet referenced by the importrange formula
+	 * @param range - the range of cells covered by the formula
+	 * @return the list of values, row by row.
+	 */
 	List<String> getRangeValues(String sheetId, String range);
 }
