@@ -12,13 +12,56 @@ import tp1.api.engine.AbstractSpreadsheet;
 import tp1.api.engine.SpreadsheetEngine;
 
 
+/**
+ * Engine for computing the results of a spreadsheet.
+ * 
+ * Use: 
+ * 
+ *		Spreadsheet sheet = ...;
+ *
+ *		List<List<String>> values = SpreadsheetEngineImpl.getInstance().computeSpreadsheetValues( new AbstractSpreadsheet() {
+ *			@Override
+ *			public int rows() {
+ *				return sheet.getLines();
+ *			}
+ *
+ *			@Override
+ *			public int columns() {
+ *				return sheet.getColumns();
+ *			}
+ *
+ *			@Override
+ *			public String sheetId() {
+ *				return sheet.getSheetId();
+ *			}
+ *
+ *			@Override
+ *			public String cellRawValue(int row, int col) {
+ *				try {
+ *					return sheet.getRawValues().get(row).get(col);
+ *				} catch( IndexOutOfBoundsException e) {
+ *					return "#ERR?";
+ *				}
+ *			}
+ *
+ *			@Override
+ *			public List<String> getRangeValues(String sheetURL, String range) {
+ *				// get remote range ...
+ *			}
+ *			
+ *		});
+ */
 public class SpreadsheetEngineImpl implements SpreadsheetEngine {
+	
+	private static SpreadsheetEngineImpl instance;
 	
 	private SpreadsheetEngineImpl() {		
 	}
 
-	static public SpreadsheetEngine getInstance() {
-		return new SpreadsheetEngineImpl();
+	static synchronized public SpreadsheetEngine getInstance() {
+		if( instance == null)
+			instance = new SpreadsheetEngineImpl();
+		return instance;
 	}
 	
 	
@@ -47,7 +90,7 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
         }        
         return rows;
 	}
-	
+		
 	enum CellType { EMPTY, BOOLEAN, NUMBER, IMPORTRANGE, TEXT, FORMULA };
 	
 	static void setCell( AbstractSpreadsheet sheet, ExcelWorksheet worksheet, ExcelCell cell, String rawVal ) {
