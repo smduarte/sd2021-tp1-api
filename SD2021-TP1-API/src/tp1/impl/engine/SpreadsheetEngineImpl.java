@@ -67,7 +67,7 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 			cell.setValue(rawVal);
 		break;
 		case IMPORTRANGE:
-			setCell( sheet, worksheet, cell, sheet.getRangeValues("", ""));
+			throw new RuntimeException("Not yet implemented...");
 		case EMPTY:
 			break;
 		};
