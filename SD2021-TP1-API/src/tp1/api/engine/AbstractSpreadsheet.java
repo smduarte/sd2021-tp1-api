@@ -35,9 +35,9 @@ public interface AbstractSpreadsheet {
 	
 	/**
 	 * Called by the engine to resolve importrange formulas
-	 * @param sheetId - the sheet referenced by the importrange formula
+	 * @param sheetURL - the url of the sheet referenced by the importrange formula
 	 * @param range - the range of cells covered by the formula
 	 * @return the list of values, row by row.
 	 */
-	List<String> getRangeValues(String sheetId, String range);
+	List<String> getRangeValues(String sheetURL, String range);
 }
