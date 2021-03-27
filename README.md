@@ -9,4 +9,4 @@ Web page: [https://preguica.github.io/sd2021/praticas2021/trab1/trab1](https://p
 ### **Version:** 0.9 - 26/mar - 23:00
 Contents:
 * API interfaces for REST
-* Engine for computing values: check comments on [tp1.impl.engine.SpreadsheetEngineImpl](https://github.com/smduarte/sd2021-tp1-api/blob/main/sd2021-tp1-api/src/tp1/impl/engine/SpreadsheetEngineImpl.java) for instructions on how to use it.
+* Engine for computing values: check comments on [tp1.impl.engine.SpreadsheetEngineImpl](https://github.com/smduarte/sd2021-tp1-api/blob/main/sd2021-tp1-api/src/tp1/impl/engine/SpreadsheetEngineImpl.java) for instructions on how to use it. A new version of this class may be provided at a later time.
