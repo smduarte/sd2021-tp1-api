@@ -15,7 +15,9 @@ public class Spreadsheet {
 	private String sheetURL;
 	// number of the lines and columns
 	private int lines, columns;
+	// set of users with which ths sheet is shared
 	private Set<String> sharedWith;
+	// raw contents of the sheet
 	private List<List<String>> rawValues;
 	
 	public Spreadsheet() {	
