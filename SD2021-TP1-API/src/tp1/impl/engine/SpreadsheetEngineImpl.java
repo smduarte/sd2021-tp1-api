@@ -1,10 +1,8 @@
 package tp1.impl.engine;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import com.gembox.spreadsheet.CellRange;
 import com.gembox.spreadsheet.ExcelCell;
 import com.gembox.spreadsheet.ExcelFile;
 import com.gembox.spreadsheet.ExcelWorksheet;
