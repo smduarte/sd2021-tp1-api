@@ -19,7 +19,7 @@ public interface AbstractSpreadsheet {
 	int rows();
 	
 	/**
-	 * The number of coluns of the spreadsheet
+	 * The number of columns of the spreadsheet
 	 */
 	int columns();
 	
