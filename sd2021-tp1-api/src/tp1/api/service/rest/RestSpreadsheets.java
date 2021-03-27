@@ -36,7 +36,8 @@ public interface RestSpreadsheets {
 
 	
 	/**
-	 * Deletes a spreadsheet.
+	 * Deletes a spreadsheet.  Only the owner can call this method.
+	 * 
 	 * @param sheetId - the sheet to be deleted.
 	 * @param password - the password of the owner of the spreadsheet.
 	 * 
@@ -84,7 +85,8 @@ public interface RestSpreadsheets {
 	@PUT
 	@Path("/{sheetId}/{cell}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	void updateCell( @PathParam("sheetId") String sheetId, @PathParam("cell") String cell, String rawValue, @QueryParam("userId") String userId, @QueryParam("password") String password);
+	void updateCell( @PathParam("sheetId") String sheetId, @PathParam("cell") String cell, String rawValue, 
+			@QueryParam("userId") String userId, @QueryParam("password") String password);
 
 	
 	/**
@@ -101,11 +103,11 @@ public interface RestSpreadsheets {
 	@GET
 	@Path("/{sheetId}/values")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<List<String>> getSpreadsheetValues(@PathParam("sheetId") String sheetId, @QueryParam("userId") String userId, @QueryParam("password") String password);
+	List<List<String>> getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
+			@QueryParam("userId") String userId, @QueryParam("password") String password);
 
 	/**
-	 * 
-	 * Adds a new user to the list of shares of a spreadsheet.
+	 * Adds a new user to the list of shares of a spreadsheet. Only the owner can call this method.
 	 * 
 	 * @param sheetId - the sheet being shared.
 	 * @param userId - the user that is being added to the list of shares. In this method, the userId is represented
@@ -121,11 +123,12 @@ public interface RestSpreadsheets {
 	 */
 	@POST
 	@Path("{/{sheetId}/share/{userId}")
-	void shareSpreadsheet( @PathParam("sheetId") String sheetId, @PathParam("userId") String userId, @QueryParam("password") String password);
+	void shareSpreadsheet( @PathParam("sheetId") String sheetId, @PathParam("userId") String userId, 
+			@QueryParam("password") String password);
 
 	
 	/**
-	 * Removes a user from the list of shares of a spreadsheet.
+	 * Removes a user from the list of shares of a spreadsheet. Only the owner can call this method.
 	 * 
 	 * @param sheetId - the sheet being shared.
 	 * @param userId - the user that is being added to the list of shares. In this method, the userId is represented
@@ -139,5 +142,6 @@ public interface RestSpreadsheets {
 	 */
 	@DELETE
 	@Path("{/{sheetId}/share/{userId}")
-	void unshareSpreadsheet( @PathParam("sheetId") String sheetId, @PathParam("userId") String userId, @QueryParam("password") String password);
+	void unshareSpreadsheet( @PathParam("sheetId") String sheetId, @PathParam("userId") String userId, 
+			@QueryParam("password") String password);
 }
