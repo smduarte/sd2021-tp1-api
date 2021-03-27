@@ -16,7 +16,6 @@ import tp1.api.engine.SpreadsheetEngine;
  * Engine for computing the results of a spreadsheet.
  * 
  * Use: 
- * 
  *		Spreadsheet sheet = ...;
  *
  *		List<List<String>> values = SpreadsheetEngineImpl.getInstance().computeSpreadsheetValues( new AbstractSpreadsheet() {
@@ -24,17 +23,14 @@ import tp1.api.engine.SpreadsheetEngine;
  *			public int rows() {
  *				return sheet.getLines();
  *			}
- *
  *			@Override
  *			public int columns() {
  *				return sheet.getColumns();
  *			}
- *
  *			@Override
  *			public String sheetId() {
  *				return sheet.getSheetId();
  *			}
- *
  *			@Override
  *			public String cellRawValue(int row, int col) {
  *				try {
@@ -43,12 +39,10 @@ import tp1.api.engine.SpreadsheetEngine;
  *					return "#ERR?";
  *				}
  *			}
- *
  *			@Override
  *			public List<String> getRangeValues(String sheetURL, String range) {
  *				// get remote range ...
  *			}
- *			
  *		});
  */
 public class SpreadsheetEngineImpl implements SpreadsheetEngine {
