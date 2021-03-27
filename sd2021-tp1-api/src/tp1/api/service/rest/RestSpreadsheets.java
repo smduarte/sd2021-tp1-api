@@ -65,9 +65,28 @@ public interface RestSpreadsheets {
 	@GET
 	@Path("/{sheetId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	Spreadsheet getSpreadsheet(@PathParam("sheetId") String sheetId , @QueryParam("userId") String userId, @QueryParam("password") String password);
+	Spreadsheet getSpreadsheet(@PathParam("sheetId") String sheetId , @QueryParam("userId") String userId, 
+			@QueryParam("password") String password);
 		
 	
+	/**
+	 * Retrieves the calculated values of a spreadsheet.
+	 * @param userId - The user requesting the values
+	 * @param sheetId - the spreadsheet whose values are being retrieved.
+	 * @param password - the password of the owner of the spreadsheet
+	 * 
+	 * @return 200, if the operation is successful
+	 * 		   403, if the spreadsheet is not shared with user, or the user is not the owner, or the password is incorrect.
+	 * 		   404, if the spreadsheet or the user do not exist
+	 *		   400, otherwise
+	 */
+	@GET
+	@Path("/{sheetId}/values")
+	@Produces(MediaType.APPLICATION_JSON)
+	List<List<String>> getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
+			@QueryParam("userId") String userId, @QueryParam("password") String password);
+
+
 	/**
 	 * Updates the raw values of some cells of a spreadsheet. 
 	 * 
@@ -89,23 +108,6 @@ public interface RestSpreadsheets {
 			@QueryParam("userId") String userId, @QueryParam("password") String password);
 
 	
-	/**
-	 * Retrieves the calculated values of a spreadsheet.
-	 * @param userId - The user requesting the values
-	 * @param sheetId - the spreadsheet whose values are being retrieved.
-	 * @param password - the password of the owner of the spreadsheet
-	 * 
-	 * @return 200, if the operation is successful
-	 * 		   403, if the spreadsheet is not shared with user, or the user is not the owner, or the password is incorrect.
-	 * 		   404, if the spreadsheet or the user do not exist
-	 *		   400, otherwise
-	 */
-	@GET
-	@Path("/{sheetId}/values")
-	@Produces(MediaType.APPLICATION_JSON)
-	List<List<String>> getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
-			@QueryParam("userId") String userId, @QueryParam("password") String password);
-
 	/**
 	 * Adds a new user to the list of shares of a spreadsheet. Only the owner can call this method.
 	 * 
