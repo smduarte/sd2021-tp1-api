@@ -87,7 +87,6 @@ public interface RestUsers {
 	 *         400 otherwise.
 	 */
 	@GET
-	@Path("/")	
 	@Produces(MediaType.APPLICATION_JSON)
 	List<User> searchUsers(@QueryParam("query") String pattern);
 
