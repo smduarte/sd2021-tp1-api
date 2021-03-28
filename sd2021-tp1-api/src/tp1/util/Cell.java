@@ -2,6 +2,7 @@ package tp1.util;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.shaded.apache.poi.hssf.record.aggregates.ChartSubstreamRecordAggregate;
 
 public class Cell {
 
@@ -18,7 +19,10 @@ public class Cell {
 		char column = cellID.charAt(0);
 		if(column < 'A' || column > 'Z') 
 			throw new InvalidCellIdException(cellID + " is not a valid cell name.");
-		int line = Integer.parseInt(cellID.substring(1));
+		int line = -1;
+		try {
+			line = Integer.parseInt(cellID.substring(1));
+		} catch (NumberFormatException e) {		}
 		if(line <= 0)
 			throw new InvalidCellIdException(cellID + " is not a valid cell name.");
 		return new ImmutablePair<Integer, Integer>(line-1, (column - 'A'));
@@ -33,6 +37,6 @@ public class Cell {
 	 * @return String encoding the cell identifier in the format ColumnLine (e.g., A23 or C12)
 	 */
 	public static final String ListIndexes2CellId(int lineIndex, int columnIndex) {
-		return (columnIndex + 'A') + "" + (lineIndex + 1);
+		return Character.toString((columnIndex + 'A')) + (lineIndex + 1);
 	}
 }
