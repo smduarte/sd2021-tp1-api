@@ -143,7 +143,7 @@ public interface RestSpreadsheets {
 	 * 		   400, otherwise
 	 */
 	@DELETE
-	@Path("{/{sheetId}/share/{userId}")
+	@Path("/{sheetId}/share/{userId}")
 	void unshareSpreadsheet( @PathParam("sheetId") String sheetId, @PathParam("userId") String userId, 
 			@QueryParam("password") String password);
 }
