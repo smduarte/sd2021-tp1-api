@@ -124,7 +124,7 @@ public interface RestSpreadsheets {
 	 * 
 	 */
 	@POST
-	@Path("{/{sheetId}/share/{userId}")
+	@Path("/{sheetId}/share/{userId}")
 	void shareSpreadsheet( @PathParam("sheetId") String sheetId, @PathParam("userId") String userId, 
 			@QueryParam("password") String password);
 
