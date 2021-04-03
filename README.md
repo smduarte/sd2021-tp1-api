@@ -6,7 +6,7 @@ The change concerns how spreadsheet values (raw and computed values) are stored 
 Instead of `List<List<String>>`, the new format will be `String[][]`.
 
 Consequently, the updated version of `getSpreadsheetValues(...)`, will be:
-    `String[][] getSpreadsheetValues(@PathParam("sheetId") String sheetId, @QueryParam("userId") String userId, @QueryParam("password") String password);
+    `String[][] getSpreadsheetValues(@PathParam("sheetId") String sheetId, @QueryParam("userId") String userId, @QueryParam("password") String password);`
 
 The `Spreadsheet` class received the same change and now stores its raw values in a String[rows][cols] member.
 
