@@ -34,11 +34,6 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 				setCell(sheet, worksheet, cell, rawVal);
 			}
 		
-        try {
-            workbook.save(String.format("/tmp/%s.xls", sheet.sheetId()));        	
-        } catch( Exception x ) {
-        	x.printStackTrace();
-        }
 		worksheet.calculate();
 
 		var cells = new String[sheet.rows()][sheet.columns()];
