@@ -1,7 +1,5 @@
 package tp1.api.service.rest;
 
-import java.util.List;
-
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -83,7 +81,7 @@ public interface RestSpreadsheets {
 	@GET
 	@Path("/{sheetId}/values")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<List<String>> getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
+	String[][] getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
 			@QueryParam("userId") String userId, @QueryParam("password") String password);
 
 

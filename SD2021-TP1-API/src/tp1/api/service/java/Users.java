@@ -1,23 +1,10 @@
-package tp1.api.service.rest;
+package tp1.api.service.java;
 
-import java.util.*;
+import java.util.List;
 
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.MediaType;
 import tp1.api.User;
 
-@Path(RestUsers.PATH)
-public interface RestUsers {
-
-	static final String PATH="/users";
+public interface Users {
 
 	/**
 	 * Creates a new user.
@@ -27,10 +14,7 @@ public interface RestUsers {
 	 *         409 if the user id already exists. 
 	 *         400 otherwise.
 	 */
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	String createUser(User user);
+	Result<String> createUser(User user);
 	
 	/**
 	 * Obtains the information on the user identified by name.
@@ -41,10 +25,7 @@ public interface RestUsers {
 	 *         403 if the password is incorrect
 	 *         404 if no user exists with the provided userId
 	 */
-	@GET
-	@Path("/{userId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	User getUser(@PathParam("userId") String userId, @QueryParam("password") String password);
+	Result<User> getUser(String userId, String password);
 	
 	/**
 	 * Modifies the information of a user. Values of null in any field of the user will be 
@@ -58,11 +39,7 @@ public interface RestUsers {
 	 *         404 if no user exists with the provided userId
 	 *         400 otherwise.
 	 */
-	@PUT
-	@Path("/{userId}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	User updateUser(@PathParam("userId") String userId, @QueryParam("password") String password, User user);
+	Result<User> updateUser(String userId, String password, User user);
 	
 	/**
 	 * Deletes the user identified by userId. The spreadsheets owned by the user should be eventually removed (asynchronous
@@ -74,10 +51,7 @@ public interface RestUsers {
 	 *         403 if the password is incorrect
 	 *         404 if no user exists with the provided userId
 	 */
-	@DELETE
-	@Path("/{userId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	User deleteUser(@PathParam("userId") String userId, @QueryParam("password") String password);
+	Result<User> deleteUser(String userId, String password);
 	
 	/**
 	 * Returns the list of users for which the pattern is a substring of the name (of the user), case-insensitive.
@@ -86,8 +60,5 @@ public interface RestUsers {
 	 * @return 200 when the search was successful, regardless of the number of hits (including 0 hits).
 	 *         400 otherwise.
 	 */
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	List<User> searchUsers(@QueryParam("query") String pattern);
-
+	Result<List<User>> searchUsers(String pattern);
 }

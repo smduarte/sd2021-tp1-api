@@ -1,7 +1,10 @@
 package tp1.api;
 
 import java.util.Set;
-import java.util.List;
+
+import jakarta.xml.bind.annotation.XmlTransient;
+import tp1.util.CellRange;
+
 
 /**
  * Represents a spreadsheet.
@@ -16,15 +19,17 @@ public class Spreadsheet {
 	// number of the lines and columns
 	private int rows, columns;
 	// set of users with which ths sheet is shared
-	private Set<String> sharedWith;
+	
+	// being transient, this member value is not transfered
+	transient private Set<String> sharedWith;
+	
 	// raw contents of the sheet
-	private List<List<String>> rawValues;
+	private String[][] rawValues;
 	
 	public Spreadsheet() {	
 	}
 
-	public Spreadsheet(String sheetId, String owner, String sheetURL, int lines, int columns, Set<String> sharedWith,
-			List<List<String>> rawValues) {
+	public Spreadsheet(String sheetId, String owner, String sheetURL, int lines, int columns, Set<String> sharedWith, String[][] rawValues) {
 		super();
 		this.sheetId = sheetId;
 		this.owner = owner;
@@ -84,7 +89,7 @@ public class Spreadsheet {
 		this.columns = columns;
 	}
 
-
+	@XmlTransient
 	public Set<String> getSharedWith() {
 		return sharedWith;
 	}
@@ -95,13 +100,31 @@ public class Spreadsheet {
 	}
 
 
-	public List<List<String>> getRawValues() {
+	public String[][] getRawValues() {
 		return rawValues;
 	}
 
-
-	public void setRawValues(List<List<String>> rawValues) {
+	public void setRawValues(String[][] rawValues) {
 		this.rawValues = rawValues;
 	}
 
+	/**
+	 * Updates the raw value of cell, given the cell name (e.g. A1).
+	 * @param cell  - the cell being updated.
+	 * @param value the new raw value.
+	 */
+	public void setCellRawValue(String cell, String value) {
+		var r = new CellRange( cell + ":A1");
+		rawValues[r.topRow][ r.topCol] = value;
+	}
+	
+	/**
+	 * Gets the raw value of a cell, given its index coordinates.
+	 * @param row - the row index.
+	 * @param col - the column index.
+	 * @return the raw value of the cell.
+	 */
+	public String getCellRawValue(int row, int col) {
+		return rawValues[row][col];
+	}	
 }

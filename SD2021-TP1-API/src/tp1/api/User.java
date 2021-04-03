@@ -4,6 +4,7 @@ package tp1.api;
  * Represents a User in the system
  */
 public class User {
+
 	private String email;
 	private String userId;
 	private String fullName;

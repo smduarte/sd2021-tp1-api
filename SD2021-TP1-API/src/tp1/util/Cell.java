@@ -2,7 +2,6 @@ package tp1.util;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.shaded.apache.poi.hssf.record.aggregates.ChartSubstreamRecordAggregate;
 
 public class Cell {
 
@@ -11,7 +10,7 @@ public class Cell {
 	 * to access the contents of that cell in a List<List<String>> format (where the external List has the lines
 	 * and the internal lists have the columns in order. 
 	 * @param cellID - String with the textual representation of the cell
-	 * @return Pair<Integer,Integer> where the first element of the pair represent the index of the line, and
+	 * @return Pair<Integer,Integer> where the first element of the pair represent the index of the row, and
 	 * the second the index of the column.
 	 * @throws InvalidCellIdException - if the cellID parameter is in an invalid format.
 	 */
