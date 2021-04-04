@@ -16,7 +16,7 @@ which takes the string name of the cell (e.g., A1), instead of row, column indic
 
   `public void setCellRawValue(String cell, String value)`
 
-Also included in the update is the `CellRange` utility class. This class includes the helper method `extractRangeValuesFrom`,
+Also included in the update is the `CellRange` utility class. This class provides the helper method `extractRangeValuesFrom`,
 which should be considered in the implementation of the `importrange` formula.
 
 ### NOTE: these changes can be previewed in the apiv2 branch of the repository.
