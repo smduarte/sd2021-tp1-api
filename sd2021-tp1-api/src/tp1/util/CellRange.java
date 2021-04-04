@@ -85,8 +85,8 @@ public class CellRange {
 		return Integer.valueOf( rowStr ) - 1 ;
 	}
 
-	private static final int BASE = ('Z' - 'A') + 1;
-	private static String CELL_REGEX = "([A-Z]+)([1-9]+[0-9]*)";	
+	static final int BASE = ('Z' - 'A') + 1;
+	static String CELL_REGEX = "([A-Z]+)([1-9]+[0-9]*)";	
 	public static final String RANGE_REGEX = String.format("(%s):(%s)", CELL_REGEX, CELL_REGEX);
 	private static final Pattern RANGE_PATTERN = Pattern.compile( RANGE_REGEX );
 }
