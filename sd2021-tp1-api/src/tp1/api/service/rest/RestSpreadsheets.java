@@ -1,7 +1,5 @@
 package tp1.api.service.rest;
 
-import java.util.List;
-
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -71,9 +69,9 @@ public interface RestSpreadsheets {
 	
 	/**
 	 * Retrieves the calculated values of a spreadsheet.
+	 * @param userId - The user requesting the values
 	 * @param sheetId - the spreadsheet whose values are being retrieved.
-	 * @param userId - The user requesting the values.
-	 * @param password - the password of the user requesting the values.
+	 * @param password - the password of the owner of the spreadsheet
 	 * 
 	 * @return 200, if the operation is successful
 	 * 		   403, if the spreadsheet is not shared with user, or the user is not the owner, or the password is incorrect.
@@ -83,7 +81,7 @@ public interface RestSpreadsheets {
 	@GET
 	@Path("/{sheetId}/values")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<List<String>> getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
+	String[][] getSpreadsheetValues(@PathParam("sheetId") String sheetId, 
 			@QueryParam("userId") String userId, @QueryParam("password") String password);
 
 

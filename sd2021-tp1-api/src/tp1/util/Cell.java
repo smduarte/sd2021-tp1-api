@@ -1,42 +1,46 @@
 package tp1.util;
 
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.shaded.apache.poi.hssf.record.aggregates.ChartSubstreamRecordAggregate;
 
 public class Cell {
 
 	/**
-	 * Translates a cell identifier in the format ColumnLine (e.g., A23 or C12) into a Pair with the indexes
-	 * to access the contents of that cell in a List<List<String>> format (where the external List has the lines
-	 * and the internal lists have the columns in order. 
+	 * Translates a cell identifier in the format ColumnLine (e.g., A23 or C12) into a Pair with the indices
+	 * to access the contents of that cell in a String[][]. 
 	 * @param cellID - String with the textual representation of the cell
-	 * @return Pair<Integer,Integer> where the first element of the pair represent the index of the line, and
+	 * @return Pair<Integer,Integer> where the first element of the pair represent the index of the row, and
 	 * the second the index of the column.
 	 * @throws InvalidCellIdException - if the cellID parameter is in an invalid format.
 	 */
-	public static final Pair<Integer,Integer> CellId2ListIndexes(String cellID) throws InvalidCellIdException {
-		char column = cellID.charAt(0);
-		if(column < 'A' || column > 'Z') 
-			throw new InvalidCellIdException(cellID + " is not a valid cell name.");
-		int line = -1;
-		try {
-			line = Integer.parseInt(cellID.substring(1));
-		} catch (NumberFormatException e) {		}
-		if(line <= 0)
-			throw new InvalidCellIdException(cellID + " is not a valid cell name.");
-		return new ImmutablePair<Integer, Integer>(line-1, (column - 'A'));
+	public static final Pair<Integer,Integer> CellId2Indexes(String cellID) throws InvalidCellIdException {
+		var m = CELL_PATTERN.matcher( cellID );
+		if( m.matches() ) {
+			var col = CellRange.col(m.group(1));
+			var row = CellRange.row(m.group(2));
+			return new ImmutablePair<>(row, col);
+		} else
+			throw new InvalidCellIdException(cellID + " is not a valid cell name.");			
 	}
 	
 	
 	/**
-	 * Translates the indexes for the line and colum in the List<List<String>> encoding of a spreadsheet
-	 * to the name of the cell in the format ColumnLine (e.g., F14).
-	 * @param lineIndex the index of the list containing line representation in the spreadsheet
-	 * @param columnIndex the index within the list encoding a line that represents the position of a column
-	 * @return String encoding the cell identifier in the format ColumnLine (e.g., A23 or C12)
+	 * Translates the indices for the row and column in the String[][] encoding of a spreadsheet
+	 * to the name of the cell in the format ColumnRow (e.g., F14).
+	 * @param rowIndex the row index of the cell
+	 * @param columnIndex the column index of the cell
+	 * @return String encoding the cell identifier in the format ColumnRow (e.g., A23 or C12)
 	 */
-	public static final String ListIndexes2CellId(int lineIndex, int columnIndex) {
-		return Character.toString((columnIndex + 'A')) + (lineIndex + 1);
+	public static final String Indices2CellId(int rowIndex, int columnIndex) {
+		var s = Character.toString('A' + (char)(columnIndex % CellRange.BASE));
+		while(columnIndex >= CellRange.BASE) {
+			columnIndex /= CellRange.BASE;
+			s = Character.toString('A' + (char)(columnIndex % CellRange.BASE) - 1) + s;
+		};
+		return s + (rowIndex+1);
 	}
+	
+	private static final Pattern CELL_PATTERN = Pattern.compile(CellRange.CELL_REGEX);
 }

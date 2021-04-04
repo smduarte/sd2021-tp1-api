@@ -10,6 +10,4 @@ public class InvalidCellIdException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = -2214302489926561405L;
-
-
 }
