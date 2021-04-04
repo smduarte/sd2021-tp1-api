@@ -51,7 +51,7 @@ public class CellRange {
 	 * @param values - the input values
 	 * @return the cell values corresponding to this range.
 	 */
-	public String[][] extractFrom(String[][] values ) {
+	public String[][] extractRangeValuesFrom(String[][] values ) {
 		var rangeValues = new String[ rows() ][ cols() ];
 		for( int r = 0; r < rows(); r++ )
 			for( int c = 0; c < cols(); c++)

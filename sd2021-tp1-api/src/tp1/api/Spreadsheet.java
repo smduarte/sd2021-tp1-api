@@ -20,8 +20,7 @@ public class Spreadsheet {
 	private int rows, columns;
 	// set of users with which ths sheet is shared
 	
-	// being transient, this member value is not transfered
-	transient private Set<String> sharedWith;
+	private Set<String> sharedWith;
 	
 	// raw contents of the sheet
 	private String[][] rawValues;
@@ -89,7 +88,6 @@ public class Spreadsheet {
 		this.columns = columns;
 	}
 
-	@XmlTransient
 	public Set<String> getSharedWith() {
 		return sharedWith;
 	}
@@ -116,6 +114,17 @@ public class Spreadsheet {
 	public void setCellRawValue(String cell, String value) {
 		var r = new CellRange( cell + ":A1");
 		rawValues[r.topRow][ r.topCol] = value;
+	}
+	
+	/**
+	 * Updates the raw value of cell, given the row and col indices.
+	 * @param row  - the row index of the cell being updated.
+	 * @param col  - the column index of the cell being updated.
+	 * @param value the new raw value.
+	 */
+	@Deprecated
+	public void setCellRawValue(int row, int col, String value) {
+		rawValues[row][ col] = value;
 	}
 	
 	/**
