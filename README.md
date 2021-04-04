@@ -9,7 +9,7 @@ Consequently, the updated version of the API will provide:
 
 `String[][] getSpreadsheetValues(...);`, instead of: `List<List<String>> getSpreadsheetValues(...)`.
 
-The `Spreadsheet` class received the same change and now stores its raw values in a `String[rows][cols] member.
+The `Spreadsheet` class received the same change and now stores its raw values in a `String[rows][cols]` member.
 
 As part of the update, the **preferred** way to update the raw value of a cell in the `Spreadsheet` class uses the following method,
 which takes the string name of the cell (e.g., A1), instead of row, column indices.
