@@ -5,8 +5,9 @@ The Spreadsheets service API will be updated very soon...
 The change concerns how spreadsheet values (raw and computed values) are stored and transferred.
 Instead of `List<List<String>>`, the new format will be `String[][]`.
 
-Consequently, the updated version of the API will provide `String[][] getSpreadsheetValues(...);`, instead
-of `List<List<String>> getSpreadsheetValues(...)`.
+Consequently, the updated version of the API will provide:
+
+`String[][] getSpreadsheetValues(...);`, instead of: `List<List<String>> getSpreadsheetValues(...)`.
 
 The `Spreadsheet` class received the same change and now stores its raw values in a `String[rows][cols] member.
 
