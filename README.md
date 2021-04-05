@@ -1,6 +1,6 @@
 # UPDATE 4th APRIL
 
-The Spreadsheets service API will be updated very soon...
+The Spreadsheets service API **has been updated** in the master branch.
 
 The change concerns how spreadsheet values (raw and computed values) are stored and transferred.
 Instead of `List<List<String>>`, the new format will be `String[][]`.
@@ -18,8 +18,6 @@ which takes the string name of the cell (e.g., A1), instead of row, column indic
 
 Also included in the update is the `CellRange` utility class. This class provides the helper method `extractRangeValuesFrom`,
 which should be considered in the implementation of the `importrange` formula.
-
-### NOTE: these changes can be previewed in the apiv2 branch of the repository.
 
 ---
 ## API for SD project 2020/21
