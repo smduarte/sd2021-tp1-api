@@ -33,14 +33,20 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 				ExcelCell cell = worksheet.getCell(i, j);
 				setCell(sheet, worksheet, cell, rawVal);
 			}
-		
+
+//		try {
+//			workbook.save("/tmp/" + sheet.sheetId() + ".xls");
+//		} catch( Exception x ) {
+//			x.printStackTrace();
+//		}
 		worksheet.calculate();
 
 		var cells = new String[sheet.rows()][sheet.columns()];
 		for (int row = 0; row < sheet.rows(); row++) {
 			for (int col = 0; col < sheet.columns(); col++) {
 				ExcelCell cell = worksheet.getCell(row, col);
-				cells[row][col] = cell.getValue().toString();
+				var value = cell.getValue();
+				cells[row][col] = value != null ? value.toString() : "#ERROR?";
 			}
 		}
 		return cells;
@@ -62,6 +68,7 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 				cell.setFormula(rawVal);
 			break;
 		case TEXT:
+		case EMPTY:
 			cell.setValue(rawVal);
 		break;
 		case IMPORTRANGE:
@@ -69,10 +76,9 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 			if( matcher.matches()) {
 				var sheetUrl = matcher.group(1);
 				var range = matcher.group(2);
-				var values = sheet.getRangeValues(sheetUrl, range);		
+				var values = sheet.getRangeValues(sheetUrl, range);
 				applyRange( worksheet, cell, new CellRange(range), values);
 			}
-		case EMPTY:
 			break;
 		};
 	}
