@@ -15,6 +15,7 @@ import tp1.util.CellRange;
 
 public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 	
+	private static final String ERROR = "#ERROR?";
 	private SpreadsheetEngineImpl() {		
 	}
 
@@ -46,7 +47,7 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 			for (int col = 0; col < sheet.columns(); col++) {
 				ExcelCell cell = worksheet.getCell(row, col);
 				var value = cell.getValue();
-				cells[row][col] = value != null ? value.toString() : "#ERROR?";
+				cells[row][col] = value != null ? value.toString() : ERROR;
 			}
 		}
 		return cells;
@@ -77,7 +78,10 @@ public class SpreadsheetEngineImpl implements SpreadsheetEngine {
 				var sheetUrl = matcher.group(1);
 				var range = matcher.group(2);
 				var values = sheet.getRangeValues(sheetUrl, range);
-				applyRange( worksheet, cell, new CellRange(range), values);
+				if( values != null )
+					applyRange( worksheet, cell, new CellRange(range), values);
+				else
+					cell.setValue(ERROR);
 			}
 			break;
 		};
