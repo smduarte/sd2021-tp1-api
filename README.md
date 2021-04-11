@@ -25,10 +25,13 @@ Web page: [https://preguica.github.io/sd2021/praticas2021/trab1/trab1](https://p
 
 **Do not forget to replace the student numbers in the pom.xml**
 
-### **Notes:**
-* SOAP interfaces to be added.
-
 ### **Version:** 0.9 - 26/mar - 23:00
 Contents:
 * API interfaces for REST
 * Engine for computing values: check comments on [tp1.impl.engine.SpreadsheetEngineImpl](https://github.com/smduarte/sd2021-tp1-api/blob/main/sd2021-tp1-api/src/tp1/impl/engine/SpreadsheetEngineImpl.java) for instructions on how to use it. A new version of this class may be provided at a later time.
+
+### **Version:** 1.0 - 11/abr - 23:30
+Contents:
+* SOAP API - package `tp1.api.service.soap` [https://github.com/smduarte/sd2021-tp1-api/tree/main/sd2021-tp1-api/src/tp1/api/service/soap](https://github.com/smduarte/sd2021-tp1-api/tree/main/sd2021-tp1-api/src/tp1/api/service/soap)
+* Utility classes that can help those implementing the option that combines SOAP and REST in the same system - package `tp1.api.service.util` [https://github.com/smduarte/sd2021-tp1-api/tree/main/sd2021-tp1-api/src/tp1/api/service/util](https://github.com/smduarte/sd2021-tp1-api/tree/main/sd2021-tp1-api/src/tp1/api/service/util)
+
