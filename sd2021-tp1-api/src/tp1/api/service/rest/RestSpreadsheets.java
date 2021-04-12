@@ -71,7 +71,7 @@ public interface RestSpreadsheets {
 	 * Retrieves the calculated values of a spreadsheet.
 	 * @param userId - The user requesting the values
 	 * @param sheetId - the spreadsheet whose values are being retrieved.
-	 * @param password - the password of the owner of the spreadsheet
+	 * @param password - The password of the user performing the operation.
 	 * 
 	 * @return 200, if the operation is successful
 	 * 		   403, if the spreadsheet is not shared with user, or the user is not the owner, or the password is incorrect.
@@ -92,7 +92,7 @@ public interface RestSpreadsheets {
 	 * @param sheetId - the spreadsheet whose values are being retrieved.
 	 * @param cell - the cell being updated
 	 * @param rawValue - the new raw value of the cell
-	 * @param password - the password of the owner of the spreadsheet
+	 * @param password - The password of the user performing the operation.
 	 * 
 	 * @return 204, if the operation was successful
 	 * 		  404, if no spreadsheet exists with the given sheetid
