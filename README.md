@@ -1,3 +1,10 @@
+# UPDATE 25th APRIL
+
+Started updating the repository for project 2.
+
+The last version of the repository for project 1 can be accessed by accessing tag **v1.0-final**.
+
+---
 # UPDATE 4th APRIL
 
 The Spreadsheets service API **has been updated** in the master branch.
