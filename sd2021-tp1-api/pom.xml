@@ -64,7 +64,7 @@
 				<configuration>
 					<images>
 						<image>
-							<name>smduarte/sd2021-tp1-${autors}</name>
+							<name>sd2021-tp1-${authors}</name>
 							<build>
 								<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 							</build>
